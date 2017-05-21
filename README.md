@@ -1,4 +1,4 @@
-# phone_book REST API (php, jquery)
+# REST API phone_book (php, jquery)
 
 1.	Import sql dump (*phone_book*) with one table "users". Host name, username, password and db name are in *api/lib/Database.php*.
 2.	Entry *index.html*.

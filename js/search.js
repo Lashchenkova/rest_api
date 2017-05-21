@@ -14,7 +14,7 @@ $("#search").on('submit', function(e) {
             for (let i = 0; i < data.length; i++) {
                 let {id, first_name, last_name, email, phone} = data[i];
                 let actions = '<td id="actions"><a href="">' +
-                    '<span class="glyphicon glyphicon-pencil" aria-hidden="true" onclick="edit_contact('+ id +')">' +
+                    '<span class="glyphicon glyphicon-pencil" aria-hidden="true" onclick="edit_contact('+ id +', event)">' +
                     '</span></a><a href=""><span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="delete_contact('+ id +')">' +
                     '</span></a></td>';
 

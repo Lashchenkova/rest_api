@@ -2,8 +2,11 @@
 
 
 function edit_contact(id, e) {
+    e.preventDefault();
 
     $('tr').each(function () {
+        let data = {};
+
         if ($(this).attr('id') == id) {
             $(this).find('.glyphicon-pencil').removeClass('glyphicon-pencil').addClass('glyphicon-saved');
 
@@ -12,19 +15,26 @@ function edit_contact(id, e) {
             let lname = $(this).find('.last_name');
             lname.wrapInner("<input type='text' name='last_name' value=" + lname.text() + ">");
             let email = $(this).find('.email');
-            email.wrapInner("<input type='text' name='email_name' value=" + email.text() + ">");
+            email.wrapInner("<input type='text' name='email' value=" + email.text() + ">");
             let phone = $(this).find('.phone');
-            phone.wrapInner("<input type='text' name='phone_name' value=" + phone.text() + ">");
-        }
+            phone.wrapInner("<input type='text' name='phone' value=" + phone.text() + ">");
 
-        // $(this).find('.glyphicon-saved').on('click', function(){
-        //     $.ajax({
-        //         url: 'api/users/' + id,
-        //         type: 'PUT',
-        //         data: data,
-        //         success : '',
-        //     })
-        // });
+            $(this).find(":input").each(function () {
+                data[$(this).attr('name')] = $(this).val();
+            });
+            data = JSON.stringify(data);
+
+            $(this).find('.glyphicon-saved').on('click', function(){
+                $.ajax({
+                    url: 'api/users/' + id,
+                    type: 'PUT',
+                    data: data,
+                    success : data => {
+                        location.reload()
+                    }
+                })
+            });
+        }
     });
 }
 
